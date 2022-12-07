@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
   </head>
 
   <body>
@@ -32,8 +34,8 @@
       <div class="content">
         <h1 class="verse">
           <b><i>
-            Luego Dios el Señor dijo: «No es bueno que el hombre esté solo. Voy a hacerle una ayuda adecuada».
-            - Gen 2:18
+            "Asi que, no son ya más dos, si no una sola carne; por tanto, lo que Dios ha unido no lo separe el hombre"
+            - Mateo 19:6
           </i></b>
         </h1>
         <img class="round-4 grayscale-min" src="{{ asset('images/proposal-hug.jpg') }}" style="width:100%;margin:32px 0">
@@ -59,14 +61,21 @@
     <!-- Wedding information -->
     <div class="container padding-64 pale-red center" id="wedding">
       <div class="content">
-        <h1 class="text-grey"><b>Estás invitado a:</b></h1>
-        <img class="grayscale-min" src="{{ asset('images/invitation.jpeg') }}" style="width:90%; margin: 50px 0">
+        <h1 class="text-grey"><b>Estás invitado:</b></h1>
+        <h1 class="text-grey"><b>Salón Jardin Florencia</b></h1>
+        <img class="grayscale-min" src="{{ asset('images/invitation.jpeg') }}" style="width:90%; margin-bottom: 10rem">
       </div>
       <div>
         <h4 class="text-grey">Te compartimos el programa para que estes familiarizado con los horarios</h4>
         <img src="{{ asset('images/programa.png') }}" style="border-radius: 25px; width: 70%">
         <h5 class="text-grey">Sujeto a cambios por tiempos</h5>
       </div>
+    </div>
+
+    <div class="map">
+      <h4 style="margin: 0px 0px 10px 0px;">Ubicación</h4>
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15229.37073759274!2d-93.1753415726563!3d16.72173330670081!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85ecd9f426455b9f%3A0xcbe82a96a508c769!2sSal%C3%B3n%20Jardin%20Florencia!5e1!3m2!1ses-419!2smx!4v1670208957812!5m2!1ses-419!2smx" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
     </div>
 
     <!-- RSVP section -->
@@ -105,7 +114,7 @@
           <h4>Para confirmar la asistencia solo necesitas ingresar tu o tus nombres y apellidos en el espacio señalado,
           preferiblemente quíen sea la cabeza de la familia debe ingresarlo.</h4>
           <h4>Se realizará una consulta a la base de datos para responderte el número de pases que tiene por familia.</h4>
-          <h4>Es importante porque en la entrada del evento no dejarán pasar a nadie más que los indicados por familia.</h4>
+          <h4>Es importante confirmar y ver el numero de pases que tiene porque en la entrada del evento no dejarán pasar a nadie más que los indicados por familia.</h4>
           <h4>Si la aplicación no le regresa su número de pases, puede mandarnos un mensaje a cualquiera de estos números:</h4>
           <h4>Él: 961 304 9788 - Ella: 961 266 2677</h4>
 
@@ -221,7 +230,8 @@
     }
 
     body {
-      margin: 0
+      margin: 0;
+      background-color: #ffdddd
     }
 
     button,
@@ -624,6 +634,11 @@
 
     .countdown {
       font-size: 35px;
+    }
+
+    .map {
+      text-align: center;
+      background-color: #ffdddd;
     }
 
     @media (max-width:600px) {

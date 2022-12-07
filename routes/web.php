@@ -14,8 +14,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () { return view('welcome'); });
-Route::get('/wedding', function () { return view('wedding_template'); });
+// Route::get('/', function () { return view('welcome'); });
+Route::get('/bodorrio', function () { return view('wedding_template'); });
 Route::get('/countdown', function () { return view('countdown'); });
 
 // Route::get('/wedding-vue', function () { return view('wedding-vue/wedding_reactive'); });

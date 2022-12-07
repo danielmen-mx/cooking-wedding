@@ -6,6 +6,7 @@
   </head>
 
   <body>
+    <!-- add passess repsonse -->
     <!-- Photo Grid -->
     <div class="row container"> 
       <div class="column">

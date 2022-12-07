@@ -22,7 +22,7 @@ class Store extends FormRequest
     {
         $nameComplete = explode(' ', $name);
         if (count($nameComplete) < 2) {
-            return throw new Exception('The name is not complete to validate');
+            throw new Exception('The name is not complete to validate');
         }
 
         return;
