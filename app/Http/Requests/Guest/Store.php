@@ -22,7 +22,9 @@ class Store extends FormRequest
     {
         $nameComplete = explode(' ', $name);
         if (count($nameComplete) < 2) {
-            throw new Exception('The name is not complete to validate');
+            $message = 'Parece que no estas siguiendo las instrucciones, ¡escribe completo y bien tu nombre!';
+            return view('no_rules', ['message' => $message]);
+            // throw new Exception('The name is not complete to validate');
         }
 
         return;
@@ -30,23 +32,29 @@ class Store extends FormRequest
 
     public function checkIfGuestExists($name)
     {
-        $namesBySentence = explode(' ', $name);
+        $name = explode(' ', $name);
         $guests = Guest::get();
-        foreach ($guests as $guest) {
-            $reference = null;
-            $guestNames = explode(' ', $guest->name);
 
-            foreach ($namesBySentence as $singleName) {
-                foreach ($guestNames as $guestName) {
-                    if (ucfirst($singleName) == ucfirst($guestName)) {
-                        $reference[] = $guestName;
+        foreach ($guests as $guest) {
+            $guestName = explode(' ', $guest->name);          
+            if ($guestName[0] == ucfirst($name[0])) {
+
+                if (count($guestName) >= 4 && count($name) >= 4) {
+                    if ($guestName[1] == ucfirst($name[1])) {
+                        if ($guestName[2] == ucfirst($name[2])) {
+                            if ($guestName[3] == ucfirst($name[3])) {
+                                return $guest;
+                            }
+                        }
                     }
                 }
-            }
 
-            if ($reference) {
-                if (count($reference) >= 2) {
-                    return $guest;
+                if (count($guestName) <= 3 && count($name) <= 3) {
+                    if ($guestName[1] == ucfirst($name[1])) {
+                        if ($guestName[2] == ucfirst($name['2'])) {
+                            return $guest;
+                        }
+                    }
                 }
             }
         }

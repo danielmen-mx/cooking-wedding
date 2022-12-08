@@ -18,11 +18,11 @@ class DatabaseSeeder extends Seeder
         \App\Models\User::factory()->create([
             'name' => 'Daniel Mendez',
             'email' => 'dmendez@example.com',
-            'password' => bcrypt('secret')
+            'password' => 'Dino22sa'
         ]);
 
         // \App\Models\Guest::factory(50)->create();
         $this->call(GuestOnListSeeder::class);
-        GuestOnList::factory()->count(80)->create();
+        // GuestOnList::factory()->count(80)->create();
     }
 }

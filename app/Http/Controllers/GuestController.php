@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Guest\Store;
 use Illuminate\Http\Request;
 use App\Models\Guest;
+use App\Models\GuestOnList;
+use App\Models\Ticket;
 use Exception;
+use Illuminate\Support\Facades\View;
 
 class GuestController extends Controller
 {
@@ -16,7 +19,20 @@ class GuestController extends Controller
      */
     public function index()
     {
-        //
+        $guests = Guest::get();
+        $guestsOnList = GuestOnList::whereIn('id', $guests->pluck('guest_on_list_id')->get())->get();
+        $tickets = Ticket::whereIn('id', $guestsOnList->pluck('ticket_id')->get())->get();
+        $guestsResource = $guests->each(function ($guest, $key) use ($tickets) {
+            $collect = collect();
+            $collect->name = $guest->name;
+            $collect->assistance = $guest->assistance;
+            $actualTicket = $tickets->where('guest_on_list_id', $guest->guest_on_list_id)->first();
+            $collect->passes = $actualTicket->passes;
+
+            return $collect;
+        });
+
+        return $guestsResource;
     }
 
     /**
@@ -45,13 +61,30 @@ class GuestController extends Controller
 
             if ($guestInExistence) {
                 $guestInExistence->update(["assistance" => $data['assistance']]);
+                $ticket = $this->getTicket($guestInExistence->guest_on_list->ticket_id);
+                $passes = $ticket->passes;
 
-                return view('countdown');
+                if ($guestInExistence->assistance == false) {
+                    $passes = '0 porque no quires ir :P';
+                    return View::make('countdown', ['passes' => $passes]);
+                }
+                
+                return View::make('countdown', ['passes' => $passes]);
             }
 
             $guest = Guest::create($data);
+            $guestInList = $guest->checkExistsInGuestOnList($guest);
 
-            return view('countdown');
+            if ($guestInList == false) {
+                $name = $request->name;
+                return view('not_found', ['name' => $name]);
+            }
+
+            $ticket = $this->getTicket($guestInList->ticket_id);
+            $passes = $ticket->passes;
+
+            return View::make('countdown', ['passes' => $passes]);
+
         } catch (Exception $ex) {
             $code = $ex->getCode();
             $message = $ex->getMessage();
@@ -104,5 +137,10 @@ class GuestController extends Controller
     public function destroy(Guest $guest)
     {
         //
+    }
+
+    private function getTicket($ticketId)
+    {
+        return Ticket::where('id', $ticketId)->first();
     }
 }

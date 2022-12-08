@@ -6,12 +6,10 @@
   </head>
 
   <body>
-    <!-- add passess repsonse -->
-    <!-- Photo Grid -->
     <div class="row container"> 
       <div class="column">
         <img src="{{ asset('carrousel/1.jpg') }}" style="width:100%">
-        <img src="{{ asset('carrousel/2.png') }}" style="width:100%">
+        {{-- <img src="{{ asset('carrousel/2.png') }}" style="width:100%"> --}}
         <img src="{{ asset('carrousel/3.jpg') }}" style="width:100%">
         <img src="{{ asset('carrousel/4.jpg') }}" style="width:100%">
         <img src="{{ asset('carrousel/5.jpg') }}" style="width:100%">
@@ -48,46 +46,64 @@
         <img src="{{ asset('carrousel/29.jpg') }}" style="width:100%">
         <img src="{{ asset('carrousel/30.jpg') }}" style="width:100%">
       </div>
-    
-      <div class="content" style="position: fixed">
-        <h1 style="font-size: 8rem"><i>Daniel & Jhovana</i></h1>
-        <p class="greatings"><i>¡Gracias por tu respuesta!</i></p>
-        {{-- <h1>Gracias por tu respuesta!</h1> --}}
-        <p id="countdown" style="color: #F8FFDB; font-family: system-ui; font-size: 8rem"></p>
-        <p><i style="font-size: 2rem">Esperamos emocionados que nos acompañes ese gran día.</i></p>
-      </div>
+
+      <header class="display-container wide">
+        <div class="display-middle center round-4" style="background-color: black; opacity: 0.9; color: #FDFDBD">
+            <h1>Tu número de pases:</h1>
+            <h1 style="color: red">{{ $passes }}</h1>
+            <h1>¡Gracias por tu respuesta!</h1>
+            <p id="countdown" class="countdown"></p>
+            <p>Esperamos emocionados ese gran día.</p>
+        </div>
+      </header>
     </div>
   </body>
 
   <style>
-    * {
-      box-sizing: border-box;
+    html {
+      box-sizing: border-box
+    }
+
+    *,
+    *:before,
+    *:after {
+      box-sizing: inherit
+    }
+
+    html {
+      -ms-text-size-adjust: 100%;
+      -webkit-text-size-adjust: 100%
     }
 
     body {
-      background-color: black;
-      font-family: Arial;
       margin: 0;
+      background-color: #ffdddd
+    }
+
+    button,
+    input,
+    select,
+    textarea,
+    optgroup {
+      font: inherit;
+      margin: 0
+    }
+
+    body,h1,h2{
+      font-family: "Raleway", sans-serif
+    }
+
+    body, html {
+      height: 100%
     }
 
     p {
-      text-align: center;
-      font-size: 60px;
-      margin-top: 0px;
-      color: #F8FFDB;
+      line-height: 2
     }
 
     .greatings {
       color: #F8FFDB;
       padding-top: 3rem;
-    }
-
-    h1 {
-      color: #FDFDBD;
-      text-align: center;
-      font-size: 90px;
-      font-family: Verdana;
-      margin-top: 3rem;
     }
 
     .header {
@@ -149,6 +165,52 @@
       width: 100%;
       height: 100%;
       padding: 20px;
+    }
+
+    .display-container:hover .display-hover {
+      display: block
+    }
+
+    .display-container:hover span.display-hover {
+      display: inline-block
+    }
+
+    .tooltip,
+    .display-container {
+        position: relative
+    }
+
+    .display-middle {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%)
+    }
+
+    .wide {
+      letter-spacing: 4px
+    }
+
+    .center .bar {
+      display: inline-block;
+      width: auto
+    }
+
+    .bar-block.center .bar-item {
+      text-align: center
+    }
+
+    .center {
+      text-align: center !important
+    }
+
+    .bar-block.center .bar-item {
+      text-align: center
+    }
+
+    .round-4 {
+      border-radius: 4px
     }
 
   </style>
